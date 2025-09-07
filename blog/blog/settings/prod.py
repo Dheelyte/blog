@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 DATABASES = {
@@ -14,8 +14,10 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = BASE_DIR / 'static'
-MEDIA_URL = "/media/"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",   # if you have a global static/ folder
+]
 
 STORAGES = {
     "default": {

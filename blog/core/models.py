@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.core.validators import MinLengthValidator
 from ckeditor.fields import RichTextField
 
+from .utils import article_thumbnail_path
+
 class Category(models.Model):
     """
     Category model for organizing articles
@@ -52,7 +54,7 @@ class Article(models.Model):
         validators=[MinLengthValidator(50, "Content must be at least 50 characters long.")]
     )
     thumbnail = models.ImageField(
-        upload_to='articles/thumbnails',
+        upload_to=article_thumbnail_path,
         blank=True,
         null=True,
         help_text="Upload a thumbnail image for this article (recommended: 1200x630px)"
@@ -80,7 +82,6 @@ class Article(models.Model):
         ]
         permissions = [
             ('can_publish', 'Can publish articles'),
-            ('can_feature', 'Can feature articles'),
         ]
     
     def __str__(self):

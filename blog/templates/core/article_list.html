@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - Harriben Blog{% endblock %}
+{% block title %}Harriben Blog | Home{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -114,7 +114,11 @@
             {% for article in articles %}
             <article class="article-card">
                 <div class="article-thumbnail">
-                    <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                    {% if article.thumbnail %}
+                        <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                    {% else %}
+                        <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Blog" alt="{{ article.title }}" loading="lazy">
+                    {% endif %}
                 </div>
                 
                 <div class="article-content">

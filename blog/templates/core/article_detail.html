@@ -42,6 +42,10 @@
         <div class="article-hero-image">
             <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" loading="eager">
         </div>
+        {% else %}
+            <div class="article-hero-image">
+                <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Blog" alt="{{ article.title }}" loading="eager">
+            </div>
         {% endif %}
     </header>
 

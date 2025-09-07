@@ -132,4 +132,4 @@ class Article(models.Model):
         """Return thumbnail URL or default image if not available"""
         if self.thumbnail:
             return self.thumbnail.url
-        return '/static/images/default-thumbnail.jpg'
+        return None

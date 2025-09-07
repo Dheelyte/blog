@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }} - Modern Django Blog{% endblock %}
+
+{% block content %}
+<div class="article-detail-container">
+    <!-- Article Header -->
+    <header class="article-header">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="{% url 'blog:article_list' %}">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            {% for category in article.categories.all %}
+            <a href="{% url 'blog:articles_by_category' category.slug %}">{{ category.name }}</a>
+            {% if not forloop.last %}<span class="breadcrumb-separator">/</span>{% endif %}
+            {% endfor %}
+            <span class="breadcrumb-separator">/</span>
+            <span class="current">{{ article.title|truncatewords:5 }}</span>
+        </nav>
+
+        <!-- Article Title -->
+        <h1 class="article-title">{{ article.title }}</h1>
+
+        <!-- Article Meta -->
+        <div class="article-meta-centered">
+
+            <div class="article-stats">
+                <div class="stat-item">
+                    <i class="far fa-user"></i>
+                    <span>{{ article.author.get_full_name }}</span>
+                </div>
+                <div class="stat-item">
+                    <i class="far fa-clock"></i>
+                    <span>{{ article.reading_time }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        {% if article.thumbnail %}
+        <div class="article-hero-image">
+            <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" loading="eager">
+        </div>
+        {% endif %}
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="article-main-content-centered">
+        <!-- Social Sharing -->
+        <div class="social-sharing-horizontal">
+            <span class="share-label">Share this article:</span>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|urlencode }}" class="share-btn twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}&title={{ article.title|urlencode }}&summary={{ article.excerpt|striptags|urlencode }}" class="share-btn linkedin">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}&quote={{ article.title|urlencode }}" class="share-btn facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <button onclick="copyToClipboard('{{ request.build_absolute_uri }}')" 
+                        class="share-btn link"
+                        title="Copy link to clipboard">
+                    <i class="fas fa-link"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Article Content -->
+        <div class="article-body">
+
+            <!-- Main Content -->
+            <div class="content-wrapper">
+                {{ article.content|safe }}
+            </div>
+
+            
+        </div>
+
+        <!-- Article Footer -->
+        <footer class="article-footer-centered">
+            <!-- Tags -->
+            {% if article.tags.exists %}
+            <div class="article-tags">
+                <h4>Tags</h4>
+                <div class="tags-cloud">
+                    {% for tag in article.tags.all %}
+                    <a href="{% url 'blog:articles_by_tag' tag.slug %}" class="tag">
+                        <i class="fas fa-tag"></i> {{ tag.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Author Bio -->
+            <div class="author-bio-card">
+                <div class="author-avatar-large">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="author-bio-content">
+                    <h4>{{ article.author.get_full_name }}</h4>
+                    <p>Author</p>
+                    <a href="https://www.linkedin.com/in/harriben">Connect on Linkedin</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Next/Previous Navigation -->
+    <nav class="article-navigation-centered">
+        {% if previous_article %}
+        <a href="{% url 'blog:article_detail' previous_article.slug %}" class="nav-button prev-article">
+            <div class="nav-arrow">←</div>
+            <div class="nav-content">
+                <span class="nav-label">Previous Article</span>
+                <span class="nav-title">{{ previous_article.title }}</span>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if next_article %}
+        <a href="{% url 'blog:article_detail' next_article.slug %}" class="nav-button next-article">
+            <div class="nav-content">
+                <span class="nav-label">Next Article</span>
+                <span class="nav-title">{{ next_article.title }}</span>
+            </div>
+            <div class="nav-arrow">→</div>
+        </a>
+        {% endif %}
+    </nav>
+
+    <!-- Related Articles Section -->
+    <section class="related-articles-section">
+        <div class="section-header-centered">
+            <h2>You might also like</h2>
+            <p>More articles you may find interesting</p>
+        </div>
+        
+        <div class="related-articles-grid">
+            {% for related_article in related_articles %}
+            <article class="related-article-card">
+                <div class="related-article-thumbnail">
+                    <img src="{{ related_article.thumbnail_url }}" alt="{{ related_article.title }}" loading="lazy">
+                </div>
+                <div class="related-article-content">
+                    <h3>
+                        <a href="{% url 'blog:article_detail' related_article.slug %}">
+                            {{ related_article.title }}
+                        </a>
+                    </h3>
+                    <p class="related-article-excerpt">{{ related_article.excerpt|truncatewords:20 }}</p>
+                    <div class="related-article-meta">
+                        <span class="related-article-date">{{ related_article.created_at|date:"M j, Y" }}</span>
+                        <span class="related-article-reading-time">{{ related_article.reading_time }}</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

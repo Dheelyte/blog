@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search - Modern Django Blog{% endblock %}
+
+{% block content %}
+<div class="search-page-container">
+    <!-- Search Results Section -->
+    {% if query %}
+    <section class="search-results-section">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title">
+                    Search Results for "{{ query }}"
+                </h2>
+                <p class="results-count">
+                    {{ articles.count }} article{{ articles.count|pluralize }} found
+                </p>
+            </div>
+
+            {% if articles %}
+            <div class="search-results-grid">
+                {% for article in articles %}
+                <article class="search-result-card">
+                    <div class="result-image">
+                        <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                        {% if article.featured %}
+                        <span class="featured-badge">Featured</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="result-meta">
+                            <span class="result-category">
+                                {% for category in article.categories.all|slice:":1" %}
+                                {{ category.name }}
+                                {% endfor %}
+                            </span>
+                            <span class="result-date">{{ article.created_at|date:"M j, Y" }}</span>
+                        </div>
+                        
+                        <h3 class="result-title">
+                            <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
+                        </h3>
+                        
+                        <p class="result-excerpt">{{ article.excerpt|truncatewords:25 }}</p>
+                        
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="author-avatar-sm">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="author-name">{{ article.author.username }}</span>
+                            </div>
+                            
+                            <a href="{% url 'blog:article_detail' article.slug %}" class="read-more-btn">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <!-- No Results -->
+            <div class="no-results">
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No results found for "{{ query }}"</h3>
+                <p class="no-results-message">
+                    We couldn't find any articles matching your search. Try different keywords or browse our categories.
+                </p>
+                
+                <div class="no-results-actions">
+                    <a href="{% url 'blog:article_list' %}" class="browse-all-btn">
+                        <i class="fas fa-newspaper"></i> Browse All Articles
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Search Tips Section -->
+    <section class="search-tips-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Search Tips</h2>
+                <p>Get the most out of your search experience</p>
+            </div>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Use Specific Keywords</h3>
+                    <p>Try specific terms like "Django models" or "CSS grid layout" for better results</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Search by Tags</h3>
+                    <p>Use hashtags or specific tags to find content on particular topics</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Find by Author</h3>
+                    <p>Search for specific authors to see all their contributions</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Use Filters</h3>
+                    <p>Combine keywords with categories for more precise results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

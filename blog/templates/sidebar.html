@@ -1,0 +1,30 @@
+<div class="sidebar-widget">
+    <h3>Categories</h3>
+    <ul class="category-list">
+        {% for category in categories %}
+        <li>
+            <a href="{% url 'blog:articles_by_category' category.slug %}">
+                {{ category.name }}
+                <span class="count">({{ category.articles.count }})</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="sidebar-widget">
+    <h3>Popular Tags</h3>
+    <div class="tag-cloud">
+        {% for tag in tags %}
+        <a href="{% url 'blog:articles_by_tag' tag.slug %}" class="tag">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="sidebar-widget">
+    <h3>Search</h3>
+    <form action="{% url 'blog:search_articles' %}" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Search articles..." class="search-input">
+        <button type="submit" class="search-btn">Search</button>
+    </form>
+</div>

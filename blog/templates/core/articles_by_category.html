@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Articles in {{ category.name }} - Modern Django Blog{% endblock %}
+
+{% block content %}
+<section class="latest-articles">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Articles in: {{ category.name }}</h2>
+            <p class="section-description">{{ category.articles.count }} article{{ category.articles.count|pluralize }} found</p>
+        </div>
+        
+        <div class="articles-grid">
+            {% for article in articles %}
+            <article class="article-card">
+                <div class="article-thumbnail">
+                    <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                    {% if article.featured %}
+                    <span class="featured-badge">Featured</span>
+                    {% endif %}
+                </div>
+                
+                <div class="article-content">
+                    <h3 class="article-title">
+                        <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
+                    </h3>
+                    
+                    <div class="article-meta">
+                        <span class="author">By {{ article.author.username }}</span>
+                        <span class="date">{{ article.created_at|date:"M d, Y" }}</span>
+                        <span class="reading-time">{{ article.reading_time }}</span>
+                    </div>
+                    
+                    <p class="article-excerpt">{{ article.excerpt|truncatewords:25 }}</p>
+                    
+                    <div class="article-footer">
+                        <div class="article-categories">
+                            {% for category in article.categories.all|slice:":2" %}
+                            <span class="category-tag">{{ category.name }}</span>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'blog:article_detail' article.slug %}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <div class="no-articles">
+                <i class="fas fa-newspaper"></i>
+                <h3>No articles found</h3>
+                <p>Check back later for new content!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if articles.has_other_pages %}
+        <div class="pagination">
+            {% if articles.has_previous %}
+            <a href="?page={{ articles.previous_page_number }}" class="pagination-link">
+                <i class="fas fa-chevron-left"></i> Previous
+            </a>
+            {% endif %}
+            
+            {% for num in articles.paginator.page_range %}
+            {% if articles.number == num %}
+            <span class="pagination-current">{{ num }}</span>
+            {% else %}
+            <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+            {% endif %}
+            {% endfor %}
+            
+            {% if articles.has_next %}
+            <a href="?page={{ articles.next_page_number }}" class="pagination-link">
+                Next <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section" id="categories">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Explore Categories</h2>
+            <p class="section-description">Discover articles by topics you love</p>
+        </div>
+        
+        <div class="categories-grid">
+            {% for category in categories %}
+            <a href="{% url 'blog:articles_by_category' category.slug %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <h3 class="category-name">{{ category.name }}</h3>
+                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

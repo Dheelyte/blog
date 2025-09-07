@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: docker/prod/Dockerfile
     environment:
-      DJANGO_SETTINGS_MODULE: backend.settings.prod
+      DJANGO_SETTINGS_MODULE: blog.settings.prod
     volumes:
       - ./backend:/app
     expose:

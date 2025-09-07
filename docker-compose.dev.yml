@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: docker/dev/Dockerfile
     environment:
-      DJANGO_SETTINGS_MODULE: backend.settings.dev
+      DJANGO_SETTINGS_MODULE: blog.settings.dev
     volumes:
       - ./backend:/app
     ports:

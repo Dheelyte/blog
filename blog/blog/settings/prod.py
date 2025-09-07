@@ -14,6 +14,7 @@ DATABASES = {
     }
 }
 
+STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = "/media/"
 
 STORAGES = {

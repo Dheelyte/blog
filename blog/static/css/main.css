@@ -2204,6 +2204,10 @@ main {
     color: var(--primary);
 }
 
+h3.article-title {
+    font-size: 20px;
+}
+
 .article-excerpt {
     color: var(--gray-600);
     line-height: 1.6;
@@ -2366,4 +2370,42 @@ main {
         gap: 1rem;
         align-items: flex-start;
     }
+}
+.stretched-link {
+    position: static;
+}
+
+.stretched-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* Optional: Add hover effects for better UX */
+.stretched-link-container:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Ensure text content stays above the stretched link */
+.stretched-link-container > *:not(.stretched-link) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Focus styles for accessibility */
+.stretched-link:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Prevent text selection on the stretched link overlay */
+.stretched-link::before {
+    user-select: none;
+    -webkit-user-select: none;
 }

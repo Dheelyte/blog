@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - Blog{% endblock %}
+{% block title %}Home - Harriben Blog{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -26,7 +26,7 @@
         <div class="section-header">
             <h2 class="section-title">Latest Videos</h2>
             <p class="section-description">Watch my latest content on YouTube</p>
-            <a href="https://youtube.com/your-channel" target="_blank" class="youtube-channel-link">
+            <a href="https://youtube.com" target="_blank" class="youtube-channel-link">
                 Visit My Channel <i class="fab fa-youtube"></i>
             </a>
         </div>
@@ -49,6 +49,7 @@
                         <span class="video-date">3 weeks ago</span>
                     </div>
                 </div>
+                <a href="https://youtube.com" class="stretched-link"></a>
             </div>
 
             <!-- Video 3 -->
@@ -68,6 +69,7 @@
                         <span class="video-date">1 month ago</span>
                     </div>
                 </div>
+                <a href="https://youtube.com" class="stretched-link"></a>
             </div>
 
             <!-- Video 4 -->
@@ -87,12 +89,13 @@
                         <span class="video-date">2 months ago</span>
                     </div>
                 </div>
+                <a href="https://youtube.com" class="stretched-link"></a>
             </div>
         </div>
 
         <div class="youtube-cta">
             <p>Enjoying these videos? Subscribe to my channel for more content!</p>
-            <a href="https://youtube.com/your-channel?sub_confirmation=1" target="_blank" class="btn btn-youtube">
+            <a href="https://youtube.com" target="_blank" class="btn btn-youtube">
                 <i class="fab fa-youtube"></i> Subscribe to Channel
             </a>
         </div>
@@ -104,7 +107,7 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Latest Articles</h2>
-            <p class="section-description">Fresh content from our writers</p>
+            <p class="section-description">Fresh content from Dr Harrison Onovo</p>
         </div>
         
         <div class="articles-grid">
@@ -136,6 +139,8 @@
                         </a>
                     </div>
                 </div>
+                <a href="{% url 'blog:article_detail' article.slug %}" class="stretched-link">
+                </a>
             </article>
             {% empty %}
             <div class="no-articles">

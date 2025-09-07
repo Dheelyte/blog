@@ -27,7 +27,7 @@ STORAGES = {
 }
 
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "",
-    "API_KEY": "",
-    "API_SECRET": "",
+    "CLOUD_NAME": "dnyin4f6e",
+    "API_KEY": "245323211134724",
+    "API_SECRET": "2kENSedE97Vvf8zb4upBV2ekoAY",
 }

@@ -6,7 +6,7 @@ services:
     environment:
       DJANGO_SETTINGS_MODULE: blog.settings.prod
     volumes:
-      - ./backend:/app
+      - ./blog:/app
     expose:
       - 8000
     depends_on:

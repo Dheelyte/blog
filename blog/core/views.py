@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.utils import timezone
+
 from .models import Article, Category, ArticleView
 from .utils import get_user_ip_address
 
@@ -45,11 +47,15 @@ def article_detail(request, slug):
     ).exclude(id=article.id).select_related('author').distinct()[:3]
 
     user_ip = get_user_ip_address(request)
+    today = timezone.now().date()
 
-    check_article_view = ArticleView.objects.filter(article=article, user_ip=user_ip).exists()
-    if not check_article_view:
-        ArticleView.objects.create(article=article, user_ip=user_ip)
-    
+    # Track view (unique per user_ip per article)
+    ArticleView.objects.get_or_create(
+        article=article,
+        user_ip=user_ip,
+        created_at__date=today
+    )
+
     article_views = ArticleView.objects.filter(article=article).count()
 
     context = {

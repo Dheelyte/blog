@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ article.title }} - Modern Django Blog{% endblock %}
+{% block title %}{{ article.title }} - Harriben Hub{% endblock %}
 
 {% block content %}
 <div class="article-detail-container">
@@ -62,7 +62,7 @@
                 <a href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|urlencode }}" class="share-btn twitter">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}&title={{ article.title|urlencode }}&summary={{ article.excerpt|striptags|urlencode }}" class="share-btn linkedin">
+                <a href="https://www.linkedin.com/shareArticle?url={{ request.build_absolute_uri|urlencode }}&title={{ article.title|urlencode }}&summary={{ article.excerpt|striptags|urlencode }}" class="share-btn linkedin">
                     <i class="fab fa-linkedin"></i>
                 </a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}&quote={{ article.title|urlencode }}" class="share-btn facebook">

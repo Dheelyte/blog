@@ -138,9 +138,14 @@ class Article(models.Model):
 class ArticleView(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user_ip = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:
         unique_together = ("article", "user_ip")
+        indexes = [
+            models.Index(fields=["article", "user_ip", "created_at"]),
+        ]
 
     def __str__(self):
         return self.user_ip
+    

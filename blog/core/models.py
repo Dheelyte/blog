@@ -133,3 +133,14 @@ class Article(models.Model):
         if self.thumbnail:
             return self.thumbnail.url
         return None
+    
+
+class ArticleView(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    user_ip = models.CharField(max_length=20)
+
+    class Meta:
+        unique_together = ("article", "user_ip")
+
+    def __str__(self):
+        return self.user_ip

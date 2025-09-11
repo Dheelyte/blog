@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Article, Category
 from django.db.models import Q
+from .models import Article, Category, ArticleView
+from .utils import get_user_ip_address
 
 
 def article_list(request):
@@ -42,9 +43,18 @@ def article_detail(request, slug):
         categories__in=article.categories.all(),
         published=True
     ).exclude(id=article.id).select_related('author').distinct()[:3]
+
+    user_ip = get_user_ip_address(request)
+
+    check_article_view = ArticleView.objects.filter(article=article, user_ip=user_ip).exists()
+    if not check_article_view:
+        ArticleView.objects.create(article=article, user_ip=user_ip)
     
+    article_views = ArticleView.objects.filter(article=article).count()
+
     context = {
         'article': article,
+        'article_views': article_views,
         'related_articles': related_articles,
         'categories': Category.objects.all()
     }

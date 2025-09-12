@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Articles in {{ category.name }} - Modern Django Blog{% endblock %}
+{% block title %}Articles in {{ category.name }} - Harriben Blog{% endblock %}
 
 {% block content %}
 <section class="latest-articles">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Articles in: {{ category.name }}</h2>
-            <p class="section-description">{{ category.articles.count }} article{{ category.articles.count|pluralize }} found</p>
+            <p class="section-description">{{ category.articles.count }} article{{ category.articles.count|pluralize }}</p>
         </div>
         
         <div class="articles-grid">

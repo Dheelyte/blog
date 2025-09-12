@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <meta property="og:title" content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Modern Django Blog{% endif %}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Harriben Blog{% endif %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Dr Harrison Onovo's Blog: Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo{% endif %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}{% static 'images/harriben-logo.png' %}{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}https://www.harribenhub.com{% static 'images/harriben hub Dr Harrison Onovo.png' %}{% endif %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta name="twitter:card" content="summary_large_image">
 </head>

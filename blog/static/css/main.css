@@ -1,12 +1,18 @@
 /* Modern Design System */
 :root {
-    --primary: #2563eb;
+    --primary: #b44f5a;
     --primary-dark: #1d4ed8;
-    --secondary: #7c3aed;
+    --secondary: #D4AF37;
     --accent: #ec4899;
     --success: #10b981;
     --warning: #f59e0b;
     --error: #ef4444;
+
+    --gold: #D4AF37;
+    --gold-light: #f7f1d3;
+    --wine: #b44f5a;
+    --wine-dark: #5A2329;
+    --cream: #F9F6F0;
     
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
@@ -74,7 +80,7 @@ main {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--wine);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -176,7 +182,7 @@ main {
 /* Hero Section */
 .hero {
     padding: 7rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -289,68 +295,6 @@ main {
     color: var(--gray-600);
     max-width: 600px;
     margin: 0 auto;
-}
-
-/* Featured Articles */
-.featured-articles {
-    padding: 4rem 0;
-    background: white;
-}
-
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
-}
-
-.featured-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.featured-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.featured-thumbnail {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.featured-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.featured-card:hover .featured-thumbnail img {
-    transform: scale(1.05);
-}
-
-.featured-overlay {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-}
-
-.featured-badge {
-    background: var(--accent);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.featured-content {
-    padding: 1.5rem;
 }
 
 /* Latest Articles */
@@ -843,9 +787,8 @@ main {
 .youtube-section {
     padding: 4rem 0;
     color: black;
-    position: relative;
     overflow: hidden;
-    background: #e4f5ff;
+    background: var(--gold-light);
 }
 
 .youtube-section::before {

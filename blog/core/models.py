@@ -141,7 +141,7 @@ class ArticleView(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:
-        unique_together = ("article", "user_ip")
+        unique_together = ("article", "user_ip", "created_at")
         indexes = [
             models.Index(fields=["article", "user_ip", "created_at"]),
         ]

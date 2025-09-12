@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <meta property="og:title" content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Modern Django Blog{% endif %}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Dr Harrison Onovo's Blog: Discover amazing articles about technology, design, and more.{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Dr Harrison Onovo's Blog: Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo{% endif %}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}{% static 'images/og-default.jpg' %}{% endif %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta name="twitter:card" content="summary_large_image">
@@ -126,7 +126,7 @@
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2024 Harriben. All rights reserved.</p>
+                    <p>&copy; 2025 Harriben. All rights reserved.</p>
                     <div class="footer-bottom-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>

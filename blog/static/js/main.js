@@ -188,3 +188,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Function to check if element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Function to add animation class when elements are in view
+function animateOnScroll() {
+    const cards = document.querySelectorAll('.youtube-card');
+    const header = document.querySelector('.section-header');
+    const cta = document.querySelector('.youtube-cta');
+    
+    if (isInViewport(header)) {
+        header.classList.add('animate');
+    }
+    
+    cards.forEach(card => {
+        if (isInViewport(card)) {
+            card.classList.add('animate');
+        }
+    });
+    
+    if (isInViewport(cta)) {
+        cta.classList.add('animate');
+    }
+}
+
+// Initial check on page load
+document.addEventListener('DOMContentLoaded', animateOnScroll);
+
+// Check on scroll
+window.addEventListener('scroll', animateOnScroll);
+
+// Check on resize
+window.addEventListener('resize', animateOnScroll);
+

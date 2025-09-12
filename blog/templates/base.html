@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Modern Django Blog{% endif %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Dr Harrison Onovo's Blog: Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo{% endif %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}{% static 'images/og-default.jpg' %}{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}{% static 'images/harriben-logo.png' %}{% endif %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta name="twitter:card" content="summary_large_image">
 </head>

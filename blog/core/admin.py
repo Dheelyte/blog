@@ -22,7 +22,7 @@ class ArticleAdmin(admin.ModelAdmin):
     form = ArticleAdminForm
     list_display = ('title', 'author', 'published', 'created_at', 'updated_at')
     list_filter = ('published', 'categories', 'created_at')
-    search_fields = ('title', 'content', 'author__username', 'tags__name', 'categories__name')
+    search_fields = ('title', 'content', 'author__username', 'categories__name')
     filter_horizontal = ('categories',)
     date_hierarchy = 'created_at'
     readonly_fields = ('created_at', 'updated_at')

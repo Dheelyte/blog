@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, ArticleView, Category
+from .models import Article, Category
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 
@@ -73,4 +73,3 @@ class CategoryAdmin(admin.ModelAdmin):
 # Register models
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(ArticleView)

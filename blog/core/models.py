@@ -12,8 +12,8 @@ class Category(models.Model):
     """
     Category model for organizing articles
     """
-    name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, editable=False, unique=True, blank=True)
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, editable=False, unique=True, blank=True)
     
     class Meta:
         verbose_name = "Category"
@@ -31,7 +31,7 @@ class Category(models.Model):
             base_slug = slugify(self.name)
             slug = base_slug
             counter = 1
-            while Article.objects.filter(slug=slug).exists():
+            while Category.objects.filter(slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = slug
@@ -46,10 +46,10 @@ class Article(models.Model):
     Article model for blog posts
     """
     title = models.CharField(
-        max_length=200,
+        max_length=255,
         validators=[MinLengthValidator(5, "Title must be at least 5 characters long.")]
     )
-    slug = models.SlugField(max_length=200, editable=False, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, editable=False, unique=True, blank=True)
     content = RichTextField(
         validators=[MinLengthValidator(50, "Content must be at least 50 characters long.")]
     )

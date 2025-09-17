@@ -12,8 +12,8 @@ class Category(models.Model):
     """
     Category model for organizing articles
     """
-    name = models.CharField(max_length=20, unique=True)
-    slug = models.SlugField(max_length=25, editable=False, unique=True, blank=True)
+    name = models.CharField(max_length=250, unique=True)
+    slug = models.SlugField(max_length=255, editable=False, unique=True, blank=True)
     
     class Meta:
         verbose_name = "Category"
@@ -46,18 +46,15 @@ class Article(models.Model):
     Article model for blog posts
     """
     title = models.CharField(
-        max_length=255,
-        validators=[MinLengthValidator(5, "Title must be at least 5 characters long.")]
+        max_length=255
     )
     slug = models.SlugField(max_length=265, editable=False, unique=True, blank=True)
-    content = RichTextField(
-        validators=[MinLengthValidator(50, "Content must be at least 50 characters long.")]
-    )
+    content = RichTextField()
     thumbnail = models.ImageField(
         upload_to=article_thumbnail_path,
         blank=True,
         null=True,
-        help_text="Upload a thumbnail image for this article (recommended: 1200x630px)"
+        help_text="Upload a thumbnail image for this article (recommended: 1200x630px)",
     )
     author = models.ForeignKey(
         User, 
@@ -93,13 +90,14 @@ class Article(models.Model):
         Set published_at timestamp when article is published
         """
         if not self.slug:
-            base_slug = slugify(self.title)
+            base_slug = slugify(self.name)
             slug = base_slug
             counter = 1
             while Article.objects.filter(slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = slug
+        super().save(*args, **kwargs)
         
         # Set published_at time when article is first published
         if self.published and not self.published_at:
@@ -137,7 +135,7 @@ class Article(models.Model):
 
 class ArticleView(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    user_ip = models.CharField(max_length=20)
+    user_ip = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:

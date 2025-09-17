@@ -91,7 +91,7 @@ class Article(models.Model):
         Set published_at timestamp when article is published
         """
         if not self.slug:
-            base_slug = slugify(self.name)
+            base_slug = slugify(self.title)
             slug = base_slug
             counter = 1
             while Article.objects.filter(slug=slug).exists():

@@ -55,6 +55,7 @@ class Article(models.Model):
         blank=True,
         null=True,
         help_text="Upload a thumbnail image for this article (recommended: 1200x630px)",
+        max_length=500
     )
     author = models.ForeignKey(
         User, 

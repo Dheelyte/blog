@@ -12,8 +12,8 @@ class Category(models.Model):
     """
     Category model for organizing articles
     """
-    name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(max_length=255, editable=False, unique=True, blank=True)
+    name = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(max_length=25, editable=False, unique=True, blank=True)
     
     class Meta:
         verbose_name = "Category"
@@ -49,7 +49,7 @@ class Article(models.Model):
         max_length=255,
         validators=[MinLengthValidator(5, "Title must be at least 5 characters long.")]
     )
-    slug = models.SlugField(max_length=255, editable=False, unique=True, blank=True)
+    slug = models.SlugField(max_length=265, editable=False, unique=True, blank=True)
     content = RichTextField(
         validators=[MinLengthValidator(50, "Content must be at least 50 characters long.")]
     )

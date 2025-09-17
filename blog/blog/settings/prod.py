@@ -2,7 +2,10 @@ from .base import *
 
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://*.harribenhub.com"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://harribenhub.com",
+    "https://www.harribenhub.com"
+]
 
 DATABASES = {
     'default': {

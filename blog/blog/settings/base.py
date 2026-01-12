@@ -153,10 +153,12 @@ CKEDITOR_5_FILE_STORAGE = "core.storage.CKEditorCloudinaryStorage" # optional
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': {
-            'items': ['heading', '|', 'bold', 'italic', 'link',
+            'items': ['heading', '|', 'bold', 'italic', 'alignment', 'link',
             'bulletedList', 'numberedList', 'blockQuote', ],
         },
-
+        'alignment': {
+            'options': ['left', 'center', 'right', 'justify']
+        }
     },
     'extends': {
         'fontFamily': {

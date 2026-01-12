@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # Add this line
-    path('ckeditor/', include('ckeditor_uploader.urls')),  # For image uploads
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
 ]
 
 # Serve media files during development

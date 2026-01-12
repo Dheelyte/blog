@@ -19,8 +19,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Playfair+Display&family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link rel="stylesheet" href="{% static 'css/ckeditor_custom.css' %}">
+    <script src="{% static 'js/ckeditor_init.js' %}"></script>
+    
     <meta property="og:title" content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Harriben Blog{% endif %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Dr Harrison Onovo's Blog: Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo{% endif %}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}https://www.harribenhub.com{% static 'images/harriben hub Dr Harrison Onovo.png' %}{% endif %}{% endblock %}">

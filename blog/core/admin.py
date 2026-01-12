@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Article, Category
 from django import forms
-from ckeditor.widgets import CKEditorWidget
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 
 admin.site.site_header = "Harriben Hub Admin"        # top-left header
@@ -14,8 +14,9 @@ class ArticleAdminForm(forms.ModelForm):
         model = Article
         fields = '__all__'
         widgets = {
-            # Add CKEditor widget for content field
-            'content': CKEditorWidget(),
+            "content": CKEditor5Widget(
+                attrs={"class": "django_ckeditor_5"}, config_name="extends"
+            )
         }
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -60,6 +61,12 @@ class ArticleAdmin(admin.ModelAdmin):
         updated = queryset.update(published=False)
         self.message_user(request, f'{updated} articles were successfully unpublished.')
     make_unpublished.short_description = "Mark selected articles as unpublished"
+
+    class Media:
+        css = {
+            'all': ('css/ckeditor_custom.css',)
+        }
+        js = ('js/ckeditor_init.js',)
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'article_count')

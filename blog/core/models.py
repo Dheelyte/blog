@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.utils import timezone
 from django.core.validators import MinLengthValidator
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 
 from .utils import article_thumbnail_path
 
@@ -49,7 +49,7 @@ class Article(models.Model):
         max_length=255
     )
     slug = models.SlugField(max_length=265, editable=False, unique=True, blank=True)
-    content = RichTextField()
+    content = CKEditor5Field('Content', config_name='extends')
     thumbnail = models.ImageField(
         upload_to=article_thumbnail_path,
         blank=True,

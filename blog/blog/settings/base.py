@@ -148,17 +148,14 @@ customColorPalette = [
     },
 ]
 
-#CKEDITOR_5_CUSTOM_CSS = 'path_to.css' # optional
+CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor_custom.css' # optional
 CKEDITOR_5_FILE_STORAGE = "core.storage.CKEditorCloudinaryStorage" # optional
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': {
-            'items': ['heading', '|', 'bold', 'italic', 'alignment', 'link',
+            'items': ['heading', '|', 'bold', 'italic', 'link',
             'bulletedList', 'numberedList', 'blockQuote', ],
         },
-        'alignment': {
-            'options': ['left', 'center', 'right', 'justify']
-        }
     },
     'extends': {
         'fontFamily': {
@@ -188,11 +185,11 @@ CKEDITOR_5_CONFIGS = {
             'blockQuote',
         ],
         'toolbar': {
-            'items': ['fullscreen', '|','heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
-                      'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
+            'items': ['fullscreen', '|','heading', '|', 'alignment', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+                      'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage', 'ImageResize',
                     'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
-                    'insertTable',
+                    'insertTable', 'HorizontalLine', 'PasteFromOffice', 'FullPage',
                     ],
             'shouldNotGroupWhenFull': 'true'
         },

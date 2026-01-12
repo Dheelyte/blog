@@ -1,0 +1,40 @@
+/* 1. The Full-Screen Container */
+.ck-editor-maximized {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important; /* Ensure it stays above Django Admin nav */
+    background: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 2. Make the editing area expand to fill the screen */
+.ck-editor-maximized .ck-editor__main {
+    flex: 1 1 auto !important;
+    height: calc(100vh - 40px) !important; /* Adjust based on toolbar height */
+    overflow-y: auto !important;
+}
+
+.ck-editor-maximized .ck-content {
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+/* 3. Helper to prevent the background page from scrolling */
+body.ck-no-scroll {
+    overflow: hidden !important;
+}
+
+/* 4. Style for our custom button */
+.ck-maximize-button {
+    margin-left: auto !important; /* Pushes button to the right side of toolbar */
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}

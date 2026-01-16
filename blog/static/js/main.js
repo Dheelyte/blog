@@ -1,16 +1,86 @@
-// Mobile menu functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu functionality and Hero Slider
+document.addEventListener('DOMContentLoaded', function () {
+    // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
-    
+
     if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ?
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
     }
-    
+
+    // Hero Slider
+    const heroSlider = document.getElementById('heroSlider');
+    if (heroSlider) {
+        const slides = heroSlider.querySelectorAll('.slide');
+        console.log('Hero Slider found. Slides count:', slides.length);
+
+        if (slides.length > 0) {
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const indicators = document.getElementById('sliderIndicators') ? document.getElementById('sliderIndicators').querySelectorAll('.indicator') : [];
+            let currentSlide = 0;
+            const slideInterval = 5000; // 5 seconds
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                if (indicators.length > 0) {
+                    indicators.forEach(ind => ind.classList.remove('active'));
+                }
+
+                currentSlide = (index + slides.length) % slides.length;
+
+                slides[currentSlide].classList.add('active');
+                if (indicators.length > 0) {
+                    indicators[currentSlide].classList.add('active');
+                }
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            // Auto slide
+            let slideTimer = setInterval(nextSlide, slideInterval);
+
+            // Reset timer on user interaction
+            function resetTimer() {
+                clearInterval(slideTimer);
+                slideTimer = setInterval(nextSlide, slideInterval);
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetTimer();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetTimer();
+                });
+            }
+
+            if (indicators.length > 0) {
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        showSlide(index);
+                        resetTimer();
+                    });
+                });
+            }
+        } // End if (slides.length > 0)
+    } // End if (heroSlider)
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -24,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Newsletter form validation
     const newsletterForms = document.querySelectorAll('.newsletter-form');
     newsletterForms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             const input = this.querySelector('input[type="email"]');
             if (input && input.value) {
@@ -37,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+}); // End of DOMContentLoaded
 
 // Copy to clipboard functionality
 function copyToClipboard(text) {
@@ -47,21 +117,21 @@ function copyToClipboard(text) {
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
-    
+
     // Select and copy the text
     textarea.select();
     textarea.setSelectionRange(0, 99999); // For mobile devices
-    
+
     try {
         const successful = document.execCommand('copy');
         const msg = successful ? 'successful' : 'unsuccessful';
         console.log('Copying text command was ' + msg);
-        
+
         // Show success feedback
         showCopyFeedback('Link copied to clipboard!');
     } catch (err) {
         console.error('Unable to copy to clipboard', err);
-        
+
         // Fallback: Use the Clipboard API if available
         if (navigator.clipboard) {
             navigator.clipboard.writeText(text).then(() => {
@@ -74,7 +144,7 @@ function copyToClipboard(text) {
             showCopyFeedback('Failed to copy link', false);
         }
     }
-    
+
     // Clean up
     document.body.removeChild(textarea);
 }
@@ -86,7 +156,7 @@ function showCopyFeedback(message, isSuccess = true) {
     if (existingFeedback) {
         existingFeedback.remove();
     }
-    
+
     // Create feedback element
     const feedback = document.createElement('div');
     feedback.className = `copy-feedback ${isSuccess ? 'success' : 'error'}`;
@@ -94,7 +164,7 @@ function showCopyFeedback(message, isSuccess = true) {
         <i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
         <span>${message}</span>
     `;
-    
+
     // Style the feedback
     feedback.style.cssText = `
         position: fixed;
@@ -111,9 +181,9 @@ function showCopyFeedback(message, isSuccess = true) {
         z-index: 10000;
         animation: slideInRight 0.3s ease;
     `;
-    
+
     document.body.appendChild(feedback);
-    
+
     // Remove after 3 seconds
     setTimeout(() => {
         feedback.style.animation = 'slideOutRight 0.3s ease';
@@ -157,33 +227,33 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Enhanced social sharing with analytics tracking
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Track social shares
     const socialLinks = document.querySelectorAll('a[href*="twitter.com"], a[href*="facebook.com"], a[href*="linkedin.com"], a[href*="reddit.com"]');
-    
+
     socialLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const platform = this.href.includes('twitter') ? 'twitter' :
-                           this.href.includes('facebook') ? 'facebook' :
-                           this.href.includes('linkedin') ? 'linkedin' :
-                           this.href.includes('reddit') ? 'reddit' : 'unknown';
-            
+                this.href.includes('facebook') ? 'facebook' :
+                    this.href.includes('linkedin') ? 'linkedin' :
+                        this.href.includes('reddit') ? 'reddit' : 'unknown';
+
             // You can add analytics tracking here
             console.log(`Shared on ${platform}: ${this.href}`);
-            
+
             // For external links, we don't prevent default behavior
             // The link will open in a new tab as specified by target="_blank"
         });
     });
-    
+
     // Add hover effects for copy buttons
     const copyButtons = document.querySelectorAll('button[onclick*="copyToClipboard"]');
     copyButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
+        button.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-2px)';
         });
-        
-        button.addEventListener('mouseleave', function() {
+
+        button.addEventListener('mouseleave', function () {
             this.style.transform = '';
         });
     });
@@ -205,17 +275,17 @@ function animateOnScroll() {
     const cards = document.querySelectorAll('.youtube-card');
     const header = document.querySelector('.section-header');
     const cta = document.querySelector('.youtube-cta');
-    
+
     if (isInViewport(header)) {
         header.classList.add('animate');
     }
-    
+
     cards.forEach(card => {
         if (isInViewport(card)) {
             card.classList.add('animate');
         }
     });
-    
+
     if (isInViewport(cta)) {
         cta.classList.add('animate');
     }

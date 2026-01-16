@@ -14,9 +14,8 @@
                 <nav class="breadcrumb">
                     <a href="{% url 'blog:home' %}">Home</a>
                     <span class="breadcrumb-separator">/</span>
-                    {% for category in article.categories.all %}
+                    {% for category in article.categories.all|slice:":1" %}
                     <a href="{% url 'blog:articles_by_category' category.slug %}">{{ category.name }}</a>
-                    {% if not forloop.last %}<span class="breadcrumb-separator">/</span>{% endif %}
                     {% endfor %}
                     <span class="breadcrumb-separator">/</span>
                     <span class="current">{{ article.title|truncatewords:5 }}</span>

@@ -26,9 +26,18 @@ def home(request):
     except EmptyPage:
         articles = paginator.page(paginator.num_pages)
     
+    # Get popular articles
+    from django.db.models import Count
+    popular_articles = Article.objects.filter(published=True).annotate(
+        view_count=Count('articleview')
+    ).order_by('-view_count')[:4]
+
+
+    
     context = {
         'articles': articles,
         'categories': Category.objects.all(),
+        'popular_articles': popular_articles,
     }
     return render(request, 'core/home.html', context)
 
@@ -44,7 +53,7 @@ def article_detail(request, slug):
     related_articles = Article.objects.filter(
         categories__in=article.categories.all(),
         published=True
-    ).exclude(id=article.id).select_related('author').distinct()[:3]
+    ).exclude(id=article.id).select_related('author').distinct()[:20]
 
     user_ip = get_user_ip_address(request)
     today = timezone.now().date()

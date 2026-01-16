@@ -4,214 +4,241 @@
 {% block title %}Harriben Hub | Home{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero">
-    <div class="floating-elements">
-        <div class="floating-element element-1"></div>
-        <div class="floating-element element-2"></div>
-        <div class="floating-element element-3"></div>
-        <div class="floating-element element-4"></div>
-    </div>
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">Discover Amazing Stories & Ideas</h1>
-                <p class="hero-description">Explore the latest news about engineering, business, technology, and more
-                    from Harriben Hub</p>
-                <div class="hero-actions">
-                    <a href="#latest-articles" class="btn btn-primary">Read Articles</a>
-                    <a href="#categories" class="btn btn-secondary">Explore Categories</a>
+<div class="container article-container">
+    <div class="article-layout">
+        <!-- Main Content Column -->
+        <div class="article-main">
+            <!-- Hero Section -->
+            <!-- Hero Section -->
+            <section class="hero home-hero">
+                <div class="floating-elements">
+                    <div class="floating-element element-1"></div>
+                    <div class="floating-element element-2"></div>
+                    <div class="floating-element element-3"></div>
+                    <div class="floating-element element-4"></div>
+                </div>
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Discover Amazing Stories & Ideas</h1>
+                        <p class="hero-description">Explore the latest news about engineering, business, technology, and
+                            more from Harriben Hub</p>
+                        <div class="hero-actions">
+                            <a href="#latest-articles" class="btn btn-primary">Read Articles</a>
+                            <a href="#categories" class="btn btn-secondary">Explore Categories</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar Column -->
+        <aside class="article-sidebar">
+            <!-- Popular Articles Widget -->
+            <div class="sidebar-widget" style="margin-bottom: 2rem;">
+                <h3 class="widget-title">Popular Articles</h3>
+                <div class="related-articles-list">
+                    {% for article in popular_articles %}
+                    <article class="sidebar-article-card">
+                        <div class="sidebar-article-thumbnail">
+                            {% if article.thumbnail %}
+                            <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" loading="lazy">
+                            {% else %}
+                            <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Hub"
+                                alt="{{ article.title }}" loading="lazy">
+                            {% endif %}
+                        </div>
+                        <div class="sidebar-article-content">
+                            <h4 class="sidebar-article-title">
+                                <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
+                            </h4>
+                            <div class="sidebar-article-meta">
+                                <span>{{ article.created_at|date:"M j, Y" }}</span>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
                 </div>
             </div>
-        </div>
+        </aside>
     </div>
-</section>
+</div>
 
 <!-- YouTube Videos Section -->
 <section class="youtube-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Latest Videos</h2>
-            <p class="section-description">Watch my latest content on YouTube</p>
-            <a href="https://youtube.com" target="_blank" class="youtube-channel-link">
-                Visit My Channel <i class="fab fa-youtube"></i>
-            </a>
-        </div>
+    <div class="section-header">
+        <h2 class="section-title">Latest Videos</h2>
+        <p class="section-description">Watch my latest content on YouTube</p>
+        <a href="https://youtube.com" target="_blank" class="youtube-channel-link">
+            Visit My Channel <i class="fab fa-youtube"></i>
+        </a>
+    </div>
 
-        <div class="youtube-grid">
-            <!-- Video 2 -->
-            <div class="youtube-card">
-                <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/7c3aed/white?text=Business+Tips" alt="Business Tips"
-                        loading="lazy">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">22:15</div>
+    <div class="youtube-grid">
+        <!-- Video 2 -->
+        <div class="youtube-card">
+            <div class="video-thumbnail">
+                <img src="https://placehold.co/400x225/7c3aed/white?text=Business+Tips" alt="Business Tips"
+                    loading="lazy">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
                 </div>
-                <div class="video-content">
-                    <h3 class="video-title">Business Tips for 2024</h3>
-                    <p class="video-description">Explore the latest CSS features including Grid, Flexbox, and new
-                        pseudo-classes for modern web design.</p>
-                    <div class="video-meta">
-                        <span class="video-views">8.5K views</span>
-                        <span class="video-date">3 weeks ago</span>
-                    </div>
-                </div>
+                <div class="video-duration">22:15</div>
             </div>
-
-            <!-- Video 3 -->
-            <div class="youtube-card">
-                <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/ec4899/white?text=Education+Tips" alt="Education Tips"
-                        loading="lazy">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">10:45</div>
-                </div>
-                <div class="video-content">
-                    <h3 class="video-title">10 Education Tips Every Developer Should Know</h3>
-                    <p class="video-description">Discover powerful Python techniques that will make your code cleaner,
-                        faster, and more Pythonic.</p>
-                    <div class="video-meta">
-                        <span class="video-views">25K views</span>
-                        <span class="video-date">1 month ago</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Video 4 -->
-            <div class="youtube-card">
-                <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/10b981/white?text=Web+Performance" alt="Web Performance"
-                        loading="lazy">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">18:20</div>
-                </div>
-                <div class="video-content">
-                    <h3 class="video-title">Optimizing Web Performance - Best Practices</h3>
-                    <p class="video-description">Learn how to make your websites faster with practical performance
-                        optimization techniques.</p>
-                    <div class="video-meta">
-                        <span class="video-views">15K views</span>
-                        <span class="video-date">2 months ago</span>
-                    </div>
+            <div class="video-content">
+                <h3 class="video-title">Business Tips for 2024</h3>
+                <p class="video-description">Explore the latest CSS features including Grid, Flexbox, and
+                    new pseudo-classes for modern web design.</p>
+                <div class="video-meta">
+                    <span class="video-views">8.5K views</span>
+                    <span class="video-date">3 weeks ago</span>
                 </div>
             </div>
         </div>
 
-        <div class="youtube-cta">
-            <p>Enjoying these videos? Subscribe to my channel for more content!</p>
-            <a href="https://youtube.com" target="_blank" class="btn btn-youtube">
-                <i class="fab fa-youtube"></i> Subscribe to Channel
-            </a>
+        <!-- Video 3 -->
+        <div class="youtube-card">
+            <div class="video-thumbnail">
+                <img src="https://placehold.co/400x225/ec4899/white?text=Education+Tips" alt="Education Tips"
+                    loading="lazy">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-duration">10:45</div>
+            </div>
+            <div class="video-content">
+                <h3 class="video-title">10 Education Tips Every Developer Should Know</h3>
+                <p class="video-description">Discover powerful Python techniques that will make your code
+                    cleaner, faster, and more Pythonic.</p>
+                <div class="video-meta">
+                    <span class="video-views">25K views</span>
+                    <span class="video-date">1 month ago</span>
+                </div>
+            </div>
         </div>
+
+        <!-- Video 4 -->
+        <div class="youtube-card">
+            <div class="video-thumbnail">
+                <img src="https://placehold.co/400x225/10b981/white?text=Web+Performance" alt="Web Performance"
+                    loading="lazy">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-duration">18:20</div>
+            </div>
+            <div class="video-content">
+                <h3 class="video-title">Optimizing Web Performance - Best Practices</h3>
+                <p class="video-description">Learn how to make your websites faster with practical
+                    performance optimization techniques.</p>
+                <div class="video-meta">
+                    <span class="video-views">15K views</span>
+                    <span class="video-date">2 months ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="youtube-cta">
+        <p>Enjoying these videos? Subscribe to my channel for more content!</p>
+        <a href="https://youtube.com" target="_blank" class="btn btn-youtube">
+            <i class="fab fa-youtube"></i> Subscribe to Channel
+        </a>
     </div>
 </section>
 
 <!-- Latest Articles -->
 <section class="latest-articles" id="latest-articles">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Latest Articles</h2>
-            <p class="section-description">Fresh content from Dr Harrison Onovo</p>
-        </div>
+    <div class="section-header">
+        <h2 class="section-title">Latest Articles</h2>
+        <p class="section-description">Fresh content from Dr Harrison Onovo</p>
+    </div>
 
-        <div class="articles-grid">
-            {% for article in articles %}
-            <article class="article-card">
-                <div class="article-thumbnail">
-                    {% if article.thumbnail %}
-                    <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
-                    {% else %}
-                    <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Hub" alt="{{ article.title }}"
-                        loading="lazy">
-                    {% endif %}
-                </div>
-
-                <div class="article-content">
-                    <h3 class="article-title">
-                        <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
-                    </h3>
-
-                    <div class="article-meta">
-                        <span class="author">By {{ article.author.username }}</span>
-                        <span class="date">{{ article.created_at|date:"M d, Y" }}</span>
-                        <span class="reading-time">{{ article.reading_time }}</span>
-                    </div>
-
-                    <div class="article-footer">
-                        <div class="article-categories">
-                            {% for category in article.categories.all|slice:":2" %}
-                            <span class="category-tag">{{ category.name }}</span>
-                            {% endfor %}
-                        </div>
-                        <a href="{% url 'blog:article_detail' article.slug %}" class="read-more">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                </a>
-            </article>
-            {% empty %}
-            <div class="no-articles">
-                <i class="fas fa-newspaper"></i>
-                <h3>No articles found</h3>
-                <p>Check back later for new content!</p>
+    <div class="articles-grid">
+        {% for article in articles %}
+        <article class="article-card">
+            <div class="article-thumbnail">
+                {% if article.thumbnail %}
+                <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                {% else %}
+                <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Hub" alt="{{ article.title }}"
+                    loading="lazy">
+                {% endif %}
             </div>
-            {% endfor %}
+
+            <div class="article-content">
+                <h3 class="article-title">
+                    <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
+                </h3>
+
+                <div class="article-meta">
+                    <span class="author">By {{ article.author.username }}</span>
+                    <span class="date">{{ article.created_at|date:"M d, Y" }}</span>
+                    <span class="reading-time">{{ article.reading_time }}</span>
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-categories">
+                        {% for category in article.categories.all|slice:":2" %}
+                        <span class="category-tag">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'blog:article_detail' article.slug %}" class="read-more">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="no-articles">
+            <i class="fas fa-newspaper"></i>
+            <h3>No articles found</h3>
+            <p>Check back later for new content!</p>
         </div>
+        {% endfor %}
+    </div>
 
-        <!-- Pagination -->
-        {% if articles.has_other_pages %}
-        <div class="pagination">
-            {% if articles.has_previous %}
-            <a href="?page={{ articles.previous_page_number }}" class="pagination-link">
-                <i class="fas fa-chevron-left"></i> Previous
-            </a>
-            {% endif %}
+    <!-- Pagination -->
+    {% if articles.has_other_pages %}
+    <div class="pagination">
+        {% if articles.has_previous %}
+        <a href="?page={{ articles.previous_page_number }}" class="pagination-link">
+            <i class="fas fa-chevron-left"></i> Previous
+        </a>
+        {% endif %}
 
-            {% for num in articles.paginator.page_range %}
-            {% if articles.number == num %}
-            <span class="pagination-current">{{ num }}</span>
-            {% else %}
-            <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
-            {% endif %}
-            {% endfor %}
+        {% for num in articles.paginator.page_range %}
+        {% if articles.number == num %}
+        <span class="pagination-current">{{ num }}</span>
+        {% else %}
+        <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
 
-            {% if articles.has_next %}
-            <a href="?page={{ articles.next_page_number }}" class="pagination-link">
-                Next <i class="fas fa-chevron-right"></i>
-            </a>
-            {% endif %}
-        </div>
+        {% if articles.has_next %}
+        <a href="?page={{ articles.next_page_number }}" class="pagination-link">
+            Next <i class="fas fa-chevron-right"></i>
+        </a>
         {% endif %}
     </div>
+    {% endif %}
 </section>
 
 <!-- Categories Section -->
 <section class="categories-section" id="categories">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Explore Categories</h2>
-            <p class="section-description">Discover articles by topics you love</p>
-        </div>
-
-        <div class="categories-grid">
-            {% for category in categories %}
-            <a href="{% url 'blog:articles_by_category' category.slug %}" class="category-card">
-                <div class="category-icon">
-                    <i class="fas fa-folder"></i>
-                </div>
-                <h3 class="category-name">{{ category.name }}</h3>
-                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}
-                </p>
-            </a>
-            {% endfor %}
-        </div>
+    <div class="section-header">
+        <h2 class="section-title">Explore Categories</h2>
+        <p class="section-description">Browse articles by topic</p>
+    </div>
+    <div class="categories-grid">
+        {% for category in categories %}
+        <a href="{% url 'blog:articles_by_category' category.slug %}" class="category-card">
+            <div class="category-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <h3 class="category-name">{{ category.name }}</h3>
+            <span class="category-count">{{ category.articles.count }} Articles</span>
+        </a>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

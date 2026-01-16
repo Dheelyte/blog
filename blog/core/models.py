@@ -38,7 +38,7 @@ class Category(models.Model):
         super().save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse('articles_by_category', kwargs={'slug': self.slug})
+        return reverse('blog:articles_by_category', kwargs={'slug': self.slug})
 
 
 class Article(models.Model):
@@ -109,7 +109,7 @@ class Article(models.Model):
         super().save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'slug': self.slug})
+        return reverse('blog:article_detail', kwargs={'slug': self.slug})
     
     @property
     def is_published(self):

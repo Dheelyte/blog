@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Harriben Blog | Home{% endblock %}
+{% block title %}Harriben Hub | Home{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -16,7 +16,8 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">Discover Amazing Stories & Ideas</h1>
-                <p class="hero-description">Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo.</p>
+                <p class="hero-description">Explore the latest news about engineering, business, technology, and more
+                    from Harriben Hub</p>
                 <div class="hero-actions">
                     <a href="#latest-articles" class="btn btn-primary">Read Articles</a>
                     <a href="#categories" class="btn btn-secondary">Explore Categories</a>
@@ -36,20 +37,22 @@
                 Visit My Channel <i class="fab fa-youtube"></i>
             </a>
         </div>
-        
+
         <div class="youtube-grid">
             <!-- Video 2 -->
             <div class="youtube-card">
                 <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/7c3aed/white?text=CSS+Masterclass" alt="CSS Masterclass" loading="lazy">
+                    <img src="https://placehold.co/400x225/7c3aed/white?text=Business+Tips" alt="Business Tips"
+                        loading="lazy">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
                     <div class="video-duration">22:15</div>
                 </div>
                 <div class="video-content">
-                    <h3 class="video-title">Modern CSS Techniques for 2024</h3>
-                    <p class="video-description">Explore the latest CSS features including Grid, Flexbox, and new pseudo-classes for modern web design.</p>
+                    <h3 class="video-title">Business Tips for 2024</h3>
+                    <p class="video-description">Explore the latest CSS features including Grid, Flexbox, and new
+                        pseudo-classes for modern web design.</p>
                     <div class="video-meta">
                         <span class="video-views">8.5K views</span>
                         <span class="video-date">3 weeks ago</span>
@@ -60,15 +63,17 @@
             <!-- Video 3 -->
             <div class="youtube-card">
                 <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/ec4899/white?text=Python+Tips" alt="Python Tips" loading="lazy">
+                    <img src="https://placehold.co/400x225/ec4899/white?text=Education+Tips" alt="Education Tips"
+                        loading="lazy">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
                     <div class="video-duration">10:45</div>
                 </div>
                 <div class="video-content">
-                    <h3 class="video-title">10 Python Tips Every Developer Should Know</h3>
-                    <p class="video-description">Discover powerful Python techniques that will make your code cleaner, faster, and more Pythonic.</p>
+                    <h3 class="video-title">10 Education Tips Every Developer Should Know</h3>
+                    <p class="video-description">Discover powerful Python techniques that will make your code cleaner,
+                        faster, and more Pythonic.</p>
                     <div class="video-meta">
                         <span class="video-views">25K views</span>
                         <span class="video-date">1 month ago</span>
@@ -79,7 +84,8 @@
             <!-- Video 4 -->
             <div class="youtube-card">
                 <div class="video-thumbnail">
-                    <img src="https://placehold.co/400x225/10b981/white?text=Web+Performance" alt="Web Performance" loading="lazy">
+                    <img src="https://placehold.co/400x225/10b981/white?text=Web+Performance" alt="Web Performance"
+                        loading="lazy">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
@@ -87,7 +93,8 @@
                 </div>
                 <div class="video-content">
                     <h3 class="video-title">Optimizing Web Performance - Best Practices</h3>
-                    <p class="video-description">Learn how to make your websites faster with practical performance optimization techniques.</p>
+                    <p class="video-description">Learn how to make your websites faster with practical performance
+                        optimization techniques.</p>
                     <div class="video-meta">
                         <span class="video-views">15K views</span>
                         <span class="video-date">2 months ago</span>
@@ -112,18 +119,19 @@
             <h2 class="section-title">Latest Articles</h2>
             <p class="section-description">Fresh content from Dr Harrison Onovo</p>
         </div>
-        
+
         <div class="articles-grid">
             {% for article in articles %}
             <article class="article-card">
                 <div class="article-thumbnail">
                     {% if article.thumbnail %}
-                        <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
+                    <img src="{{ article.thumbnail_url }}" alt="{{ article.title }}" loading="lazy">
                     {% else %}
-                        <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Blog" alt="{{ article.title }}" loading="lazy">
+                    <img src="https://placehold.co/400x225/5b636b/white?text=Harriben%20Hub" alt="{{ article.title }}"
+                        loading="lazy">
                     {% endif %}
                 </div>
-                
+
                 <div class="article-content">
                     <h3 class="article-title">
                         <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
@@ -134,7 +142,7 @@
                         <span class="date">{{ article.created_at|date:"M d, Y" }}</span>
                         <span class="reading-time">{{ article.reading_time }}</span>
                     </div>
-                    
+
                     <div class="article-footer">
                         <div class="article-categories">
                             {% for category in article.categories.all|slice:":2" %}
@@ -165,7 +173,7 @@
                 <i class="fas fa-chevron-left"></i> Previous
             </a>
             {% endif %}
-            
+
             {% for num in articles.paginator.page_range %}
             {% if articles.number == num %}
             <span class="pagination-current">{{ num }}</span>
@@ -173,7 +181,7 @@
             <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
             {% endif %}
             {% endfor %}
-            
+
             {% if articles.has_next %}
             <a href="?page={{ articles.next_page_number }}" class="pagination-link">
                 Next <i class="fas fa-chevron-right"></i>
@@ -191,7 +199,7 @@
             <h2 class="section-title">Explore Categories</h2>
             <p class="section-description">Discover articles by topics you love</p>
         </div>
-        
+
         <div class="categories-grid">
             {% for category in categories %}
             <a href="{% url 'blog:articles_by_category' category.slug %}" class="category-card">
@@ -199,7 +207,8 @@
                     <i class="fas fa-folder"></i>
                 </div>
                 <h3 class="category-name">{{ category.name }}</h3>
-                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}</p>
+                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}
+                </p>
             </a>
             {% endfor %}
         </div>

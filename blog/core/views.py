@@ -7,7 +7,7 @@ from .models import Article, Category, ArticleView
 from .utils import get_user_ip_address
 
 
-def article_list(request):
+def home(request):
     """Display list of published articles with pagination"""
 
     # Get latest articles (excluding featured ones for main grid)
@@ -30,7 +30,7 @@ def article_list(request):
         'articles': articles,
         'categories': Category.objects.all(),
     }
-    return render(request, 'core/article_list.html', context)
+    return render(request, 'core/home.html', context)
 
 def article_detail(request, slug):
     """Display single article detail with optimized queries"""

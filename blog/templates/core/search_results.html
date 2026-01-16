@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Search - Harriben Blog{% endblock %}
+{% block title %}Search - Harriben Hub{% endblock %}
 
 {% block content %}
 <div class="search-page-container">
@@ -28,7 +28,7 @@
                         <span class="featured-badge">Featured</span>
                         {% endif %}
                     </div>
-                    
+
                     <div class="result-content">
                         <div class="result-meta">
                             <span class="result-category">
@@ -38,13 +38,13 @@
                             </span>
                             <span class="result-date">{{ article.created_at|date:"M j, Y" }}</span>
                         </div>
-                        
+
                         <h3 class="result-title">
                             <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
                         </h3>
-                        
+
                         <p class="result-excerpt">{{ article.excerpt|truncatewords:25 }}</p>
-                        
+
                         <div class="result-footer">
                             <div class="result-author">
                                 <div class="author-avatar-sm">
@@ -52,7 +52,7 @@
                                 </div>
                                 <span class="author-name">{{ article.author.username }}</span>
                             </div>
-                            
+
                             <a href="{% url 'blog:article_detail' article.slug %}" class="read-more-btn">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
@@ -71,9 +71,9 @@
                 <p class="no-results-message">
                     We couldn't find any articles matching your search. Try different keywords or browse our categories.
                 </p>
-                
+
                 <div class="no-results-actions">
-                    <a href="{% url 'blog:article_list' %}" class="browse-all-btn">
+                    <a href="{% url 'blog:home' %}" class="browse-all-btn">
                         <i class="fas fa-newspaper"></i> Browse All Articles
                     </a>
                 </div>
@@ -90,7 +90,7 @@
                 <h2>Search Tips</h2>
                 <p>Get the most out of your search experience</p>
             </div>
-            
+
             <div class="tips-grid">
                 <div class="tip-card">
                     <div class="tip-icon">
@@ -99,7 +99,7 @@
                     <h3>Use Specific Keywords</h3>
                     <p>Try specific terms like "Django models" or "CSS grid layout" for better results</p>
                 </div>
-                
+
                 <div class="tip-card">
                     <div class="tip-icon">
                         <i class="fas fa-tags"></i>
@@ -107,7 +107,7 @@
                     <h3>Search by Tags</h3>
                     <p>Use hashtags or specific tags to find content on particular topics</p>
                 </div>
-                
+
                 <div class="tip-card">
                     <div class="tip-icon">
                         <i class="fas fa-user"></i>
@@ -115,7 +115,7 @@
                     <h3>Find by Author</h3>
                     <p>Search for specific authors to see all their contributions</p>
                 </div>
-                
+
                 <div class="tip-card">
                     <div class="tip-icon">
                         <i class="fas fa-filter"></i>

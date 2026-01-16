@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Articles in {{ category.name }} - Harriben Blog{% endblock %}
+{% block title %}Articles in {{ category.name }} - Harriben Hub{% endblock %}
 
 {% block content %}
 <section class="latest-articles">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Articles in: {{ category.name }}</h2>
-            <p class="section-description">{{ category.articles.count }} article{{ category.articles.count|pluralize }}</p>
+            <p class="section-description">{{ category.articles.count }} article{{ category.articles.count|pluralize }}
+            </p>
         </div>
-        
+
         <div class="articles-grid">
             {% for article in articles %}
             <article class="article-card">
@@ -20,20 +21,20 @@
                     <span class="featured-badge">Featured</span>
                     {% endif %}
                 </div>
-                
+
                 <div class="article-content">
                     <h3 class="article-title">
                         <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
                     </h3>
-                    
+
                     <div class="article-meta">
                         <span class="author">By {{ article.author.username }}</span>
                         <span class="date">{{ article.created_at|date:"M d, Y" }}</span>
                         <span class="reading-time">{{ article.reading_time }}</span>
                     </div>
-                    
+
                     <p class="article-excerpt">{{ article.excerpt|truncatewords:25 }}</p>
-                    
+
                     <div class="article-footer">
                         <div class="article-categories">
                             {% for category in article.categories.all|slice:":2" %}
@@ -63,7 +64,7 @@
                 <i class="fas fa-chevron-left"></i> Previous
             </a>
             {% endif %}
-            
+
             {% for num in articles.paginator.page_range %}
             {% if articles.number == num %}
             <span class="pagination-current">{{ num }}</span>
@@ -71,7 +72,7 @@
             <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
             {% endif %}
             {% endfor %}
-            
+
             {% if articles.has_next %}
             <a href="?page={{ articles.next_page_number }}" class="pagination-link">
                 Next <i class="fas fa-chevron-right"></i>
@@ -89,7 +90,7 @@
             <h2 class="section-title">Explore Categories</h2>
             <p class="section-description">Discover articles by topics you love</p>
         </div>
-        
+
         <div class="categories-grid">
             {% for category in categories %}
             <a href="{% url 'blog:articles_by_category' category.slug %}" class="category-card">
@@ -97,7 +98,8 @@
                     <i class="fas fa-folder"></i>
                 </div>
                 <h3 class="category-name">{{ category.name }}</h3>
-                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}</p>
+                <p class="category-count">{{ category.articles.count }} article{{ category.articles.count|pluralize }}
+                </p>
             </a>
             {% endfor %}
         </div>

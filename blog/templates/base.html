@@ -108,9 +108,13 @@
                     <h2>Stay Updated</h2>
                     <p>Subscribe to our newsletter and never miss new articles and updates.</p>
                 </div>
-                <form class="newsletter-form large">
-                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                <form class="newsletter-form large" id="newsletter-form">
+                    {% csrf_token %}
+                    <input type="email" name="email" id="newsletter-email" placeholder="Enter your email address"
+                        class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn" id="newsletter-btn">Subscribe</button>
+                    <div id="newsletter-message" class="newsletter-message"
+                        style="display: none; margin-top: 10px; font-size: 0.9rem;"></div>
                 </form>
             </div>
         </div>

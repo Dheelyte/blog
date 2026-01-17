@@ -165,6 +165,7 @@ CKEDITOR_5_CONFIGS = {
         'fontFamily': {
             'options': [
                 'default',
+                'Merriweather, serif',
                 'Arial, Helvetica, sans-serif',
                 'Courier New, Courier, monospace',
                 'Georgia, serif',

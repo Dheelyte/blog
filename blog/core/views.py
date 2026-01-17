@@ -123,3 +123,26 @@ def search_articles(request):
         'categories': categories,
     }
     return render(request, 'core/search_results.html', context)
+
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .forms import NewsletterForm
+
+@require_POST
+def subscribe(request):
+    data = request.POST
+    form = NewsletterForm(data)
+    
+    if form.is_valid():
+        form.save()
+        return JsonResponse({'status': 'success', 'message': 'Thank you for subscribing!'})
+    else:
+        # Check if email is invalid or already exists
+        if 'email' in form.errors:
+            error_msg = form.errors['email'][0]
+            if "already exists" in error_msg:
+                 return JsonResponse({'status': 'error', 'message': 'This email is already subscribed.'}, status=400)
+            return JsonResponse({'status': 'error', 'message': error_msg}, status=400)
+        
+        return JsonResponse({'status': 'error', 'message': 'Invalid request.'}, status=400)

@@ -148,3 +148,11 @@ class ArticleView(models.Model):
     def __str__(self):
         return self.user_ip
     
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    confirmed = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email

@@ -95,18 +95,58 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Newsletter form validation
-    const newsletterForms = document.querySelectorAll('.newsletter-form');
-    newsletterForms.forEach(form => {
-        form.addEventListener('submit', function (e) {
+    // Newsletter form handling with AJAX
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            const input = this.querySelector('input[type="email"]');
-            if (input && input.value) {
-                alert('Thank you for subscribing!');
-                input.value = '';
-            }
+
+            const emailInput = document.getElementById('newsletter-email');
+            const submitBtn = document.getElementById('newsletter-btn');
+            const messageDiv = document.getElementById('newsletter-message');
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            messageDiv.style.display = 'none';
+            messageDiv.classList.remove('success', 'error');
+
+            const formData = new FormData();
+            formData.append('email', emailInput.value);
+            formData.append('csrfmiddlewaretoken', csrfToken);
+
+            fetch('/subscribe/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    messageDiv.style.display = 'block';
+                    messageDiv.textContent = data.message;
+
+                    if (data.status === 'success') {
+                        messageDiv.style.color = 'green';
+                        emailInput.value = '';
+                    } else {
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    messageDiv.style.display = 'block';
+                    messageDiv.textContent = 'An error occurred. Please try again.';
+                    messageDiv.style.color = 'red';
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Subscribe';
+                });
         });
-    });
+    }
 }); // End of DOMContentLoaded
 
 // Copy to clipboard functionality

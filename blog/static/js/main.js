@@ -12,6 +12,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Dropdown toggle (works for touch devices and keyboard users)
+    document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            const isOpen = dropdown.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+    document.addEventListener('click', function (e) {
+        document.querySelectorAll('.dropdown.open').forEach(function (d) {
+            if (!d.contains(e.target)) {
+                d.classList.remove('open');
+                const t = d.querySelector('.dropdown-toggle');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
     // Hero Slider
     const heroSlider = document.getElementById('heroSlider');
     if (heroSlider) {

@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Honour the X-Forwarded-Proto header set by upstream proxies (Nginx/Cloudflare).
+# This makes request.is_secure() and request.build_absolute_uri() produce https://
+# URLs in OG/Twitter meta tags and share links.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 
@@ -67,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.categories',
             ],
         },
     },

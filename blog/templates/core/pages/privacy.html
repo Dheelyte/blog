@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Privacy Policy - Harriben Hub{% endblock %}
+{% block og_description %}Privacy Policy for Harriben Hub. How we collect, use, and protect your information, including the use of cookies and third-party advertising.{% endblock %}
+
+{% block content %}
+<div class="container article-container">
+    <div class="article-layout">
+        <div class="article-main">
+            <header class="article-header">
+                <nav class="breadcrumb">
+                    <a href="{% url 'blog:home' %}">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="current">Privacy Policy</span>
+                </nav>
+                <h1 class="article-title">Privacy Policy</h1>
+                <p style="color:#6b7280;">Last updated: 8 May 2026</p>
+            </header>
+
+            <main class="article-body-content">
+                <div class="article-body">
+                    <div class="content-wrapper ck-content">
+                        <p>This Privacy Policy explains how <strong>Harriben Hub</strong> (also referred to as "we",
+                            "us", or "our"), accessible at <a href="https://harribenhub.com">https://harribenhub.com</a>,
+                            collects, uses, and protects information about visitors to the site. By using the site, you
+                            agree to the practices described below.</p>
+
+                        <h2>1. Information We Collect</h2>
+                        <p>We collect only the information that is needed to operate the site and improve the reader
+                            experience:</p>
+                        <ul>
+                            <li><strong>Information you provide voluntarily</strong> — for example, your email address
+                                when you subscribe to our newsletter, or your name, email and message when you submit a
+                                contact form.</li>
+                            <li><strong>Information collected automatically</strong> — including your IP address,
+                                browser type, device type, referring page, the pages you visit on our site, and the
+                                time and date of your visit. This is collected via standard server logs and analytics
+                                tools.</li>
+                            <li><strong>Cookies and similar technologies</strong> — see Section 4.</li>
+                        </ul>
+
+                        <h2>2. How We Use the Information</h2>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Operate, maintain, and improve the site and its content.</li>
+                            <li>Send newsletter emails to subscribers who have opted in.</li>
+                            <li>Respond to enquiries submitted through our contact form or by email.</li>
+                            <li>Understand how readers use the site (e.g. which articles are popular) so we can produce
+                                better content.</li>
+                            <li>Detect, prevent, and address technical issues, abuse, or fraud.</li>
+                        </ul>
+
+                        <h2>3. Legal Basis for Processing</h2>
+                        <p>Where the General Data Protection Regulation (GDPR) or similar laws apply, we rely on the
+                            following legal bases: your consent (e.g. newsletter signup, non-essential cookies), our
+                            legitimate interests (running and securing the site), and compliance with legal
+                            obligations.</p>
+
+                        <h2>4. Cookies and Third-Party Advertising</h2>
+                        <p>This site uses cookies and similar technologies to operate properly, to measure traffic, and
+                            to serve advertisements.</p>
+                        <ul>
+                            <li><strong>Essential cookies</strong> — required for the site to function (for example,
+                                session and CSRF protection cookies).</li>
+                            <li><strong>Analytics cookies</strong> — we use Google Analytics to understand how the site
+                                is used. These cookies collect information in an aggregated, generally anonymous form.
+                            </li>
+                            <li><strong>Advertising cookies</strong> — third-party vendors, including
+                                <strong>Google</strong>, use cookies to serve ads based on a user's prior visits to
+                                this and other websites. Google's use of advertising cookies enables it and its
+                                partners to serve ads to our users based on their visit to our site and other sites on
+                                the Internet.</li>
+                        </ul>
+                        <p>You may opt out of personalised advertising by visiting
+                            <a href="https://www.google.com/settings/ads" rel="noopener noreferrer" target="_blank">Google's
+                                Ads Settings</a>. You can also opt out of third-party vendor use of cookies for
+                            personalised advertising by visiting
+                            <a href="https://www.aboutads.info/" rel="noopener noreferrer" target="_blank">www.aboutads.info</a>.
+                            For more information about how we use cookies, please see our
+                            <a href="{% url 'blog:cookies' %}">Cookie Policy</a>.</p>
+
+                        <h2>5. Sharing of Information</h2>
+                        <p>We do not sell your personal information. We share information only with service providers
+                            who help us operate the site (such as hosting, email delivery, analytics, and advertising),
+                            and only to the extent needed for those services. We may also disclose information if
+                            required by law or to protect our rights.</p>
+
+                        <h2>6. Data Retention</h2>
+                        <p>We retain personal information only for as long as is necessary for the purposes described
+                            in this policy. Newsletter subscribers may unsubscribe at any time, after which their email
+                            is removed from our active list.</p>
+
+                        <h2>7. Your Rights</h2>
+                        <p>Depending on your location, you may have the right to access, correct, delete, or restrict
+                            processing of your personal data, and to withdraw consent at any time. To exercise these
+                            rights, email us at
+                            <a href="mailto:contactharriben@gmail.com">contactharriben@gmail.com</a>.</p>
+
+                        <h2>8. Children's Privacy</h2>
+                        <p>This site is not directed at children under 13, and we do not knowingly collect personal
+                            information from children under 13.</p>
+
+                        <h2>9. External Links</h2>
+                        <p>Our site contains links to other websites. We are not responsible for the privacy practices
+                            or the content of those external sites. We encourage you to read their privacy policies.
+                        </p>
+
+                        <h2>10. Changes to This Policy</h2>
+                        <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of
+                            the page reflects the most recent revision. Continued use of the site after changes are
+                            posted constitutes acceptance of the updated policy.</p>
+
+                        <h2>11. Contact</h2>
+                        <p>If you have questions about this Privacy Policy, please contact us at
+                            <a href="mailto:contactharriben@gmail.com">contactharriben@gmail.com</a> or via our
+                            <a href="{% url 'blog:contact' %}">contact page</a>.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

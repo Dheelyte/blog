@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.utils import timezone
+from django.conf import settings
 
 from .models import Article, Category, ArticleView
 from .utils import get_user_ip_address
@@ -36,7 +38,6 @@ def home(request):
     
     context = {
         'articles': articles,
-        'categories': Category.objects.all(),
         'popular_articles': popular_articles,
     }
     return render(request, 'core/home.html', context)
@@ -71,7 +72,6 @@ def article_detail(request, slug):
         'article': article,
         'article_views': article_views,
         'related_articles': related_articles,
-        'categories': Category.objects.all()
     }
     return render(request, 'core/article_detail.html', context)
 
@@ -93,12 +93,9 @@ def articles_by_category(request, slug):
     except EmptyPage:
         articles = paginator.page(paginator.num_pages)
     
-    categories = Category.objects.all()
-    
     context = {
         'articles': articles,
         'category': category,
-        'categories': categories,
     }
     return render(request, 'core/articles_by_category.html', context)
 
@@ -115,12 +112,9 @@ def search_articles(request):
             Q(categories__name__icontains=query)
         ).distinct().order_by('-created_at')
     
-    categories = Category.objects.all()
-    
     context = {
         'articles': articles,
         'query': query,
-        'categories': categories,
     }
     return render(request, 'core/search_results.html', context)
 
@@ -128,6 +122,44 @@ def search_articles(request):
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .forms import NewsletterForm
+
+def about(request):
+    return render(request, 'core/pages/about.html')
+
+
+def contact(request):
+    submitted = False
+    if request.method == 'POST':
+        name = (request.POST.get('name') or '').strip()
+        email = (request.POST.get('email') or '').strip()
+        subject = (request.POST.get('subject') or '').strip()
+        message = (request.POST.get('message') or '').strip()
+        if name and email and subject and message:
+            try:
+                send_mail(
+                    subject=f"[Harriben Hub Contact] {subject}",
+                    message=f"From: {name} <{email}>\n\n{message}",
+                    from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@harribenhub.com'),
+                    recipient_list=['contactharriben@gmail.com'],
+                    fail_silently=True,
+                )
+            except Exception:
+                pass
+            submitted = True
+    return render(request, 'core/pages/contact.html', {'submitted': submitted})
+
+
+def privacy(request):
+    return render(request, 'core/pages/privacy.html')
+
+
+def terms(request):
+    return render(request, 'core/pages/terms.html')
+
+
+def cookies(request):
+    return render(request, 'core/pages/cookies.html')
+
 
 @require_POST
 def subscribe(request):

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cookie Policy - Harriben Hub{% endblock %}
+{% block og_description %}Cookie Policy for Harriben Hub. What cookies we use, why, and how you can control them.{% endblock %}
+
+{% block content %}
+<div class="container article-container">
+    <div class="article-layout">
+        <div class="article-main">
+            <header class="article-header">
+                <nav class="breadcrumb">
+                    <a href="{% url 'blog:home' %}">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="current">Cookie Policy</span>
+                </nav>
+                <h1 class="article-title">Cookie Policy</h1>
+                <p style="color:#6b7280;">Last updated: 8 May 2026</p>
+            </header>
+
+            <main class="article-body-content">
+                <div class="article-body">
+                    <div class="content-wrapper ck-content">
+                        <p>This Cookie Policy explains what cookies are, how <strong>Harriben Hub</strong> uses them,
+                            and the choices you have. It should be read together with our
+                            <a href="{% url 'blog:privacy' %}">Privacy Policy</a>.</p>
+
+                        <h2>1. What Are Cookies?</h2>
+                        <p>Cookies are small text files that a website places on your device (computer, phone, or
+                            tablet) when you visit it. They are widely used to make websites work, to make them work
+                            more efficiently, and to provide information to the site owner.</p>
+
+                        <h2>2. Types of Cookies We Use</h2>
+                        <h3>Strictly Necessary Cookies</h3>
+                        <p>These cookies are essential for the Site to function. They handle things such as
+                            cross-site request forgery (CSRF) protection and session management. Without them, parts
+                            of the Site (like submitting forms) would not work.</p>
+
+                        <h3>Analytics Cookies</h3>
+                        <p>We use Google Analytics to understand how visitors interact with the Site, which pages are
+                            most popular, and how readers find us. The data is generally aggregated and does not
+                            identify you personally. You can learn more in
+                            <a href="https://policies.google.com/technologies/cookies" rel="noopener noreferrer"
+                                target="_blank">Google's cookies overview</a>.</p>
+
+                        <h3>Advertising Cookies</h3>
+                        <p>We use <strong>Google AdSense</strong> to display advertisements. Google and its
+                            partners use cookies to serve ads based on your prior visits to this and other websites.
+                            This is sometimes referred to as personalised, behavioural, or interest-based advertising.
+                            These cookies may also be used to measure the effectiveness of ads and to limit how often
+                            you see the same ad.</p>
+
+                        <h2>3. Third-Party Cookies</h2>
+                        <p>Some cookies are set by services that appear on our pages (for example, Google Analytics
+                            and Google AdSense). We do not control how these third parties use the cookies they set.
+                            You should review their respective policies:</p>
+                        <ul>
+                            <li><a href="https://policies.google.com/privacy" rel="noopener noreferrer"
+                                    target="_blank">Google Privacy &amp; Terms</a></li>
+                            <li><a href="https://policies.google.com/technologies/ads" rel="noopener noreferrer"
+                                    target="_blank">How Google uses cookies in advertising</a></li>
+                        </ul>
+
+                        <h2>4. How to Control Cookies</h2>
+                        <p>You have several ways to control or limit how cookies are used:</p>
+                        <ul>
+                            <li>Most browsers let you refuse or delete cookies via their settings. Disabling essential
+                                cookies may break parts of the Site.</li>
+                            <li>You can opt out of personalised advertising from Google by visiting
+                                <a href="https://www.google.com/settings/ads" rel="noopener noreferrer"
+                                    target="_blank">Google's Ads Settings</a>.</li>
+                            <li>For broader opt-out options, visit
+                                <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer"
+                                    target="_blank">www.aboutads.info/choices</a> or
+                                <a href="https://www.youronlinechoices.com/" rel="noopener noreferrer"
+                                    target="_blank">www.youronlinechoices.com</a>.</li>
+                        </ul>
+
+                        <h2>5. Changes to This Cookie Policy</h2>
+                        <p>We may update this Cookie Policy as our practices and applicable laws evolve. The "Last
+                            updated" date at the top reflects the most recent change.</p>
+
+                        <h2>6. Contact</h2>
+                        <p>If you have questions about our use of cookies, please contact us at
+                            <a href="mailto:contactharriben@gmail.com">contactharriben@gmail.com</a>.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

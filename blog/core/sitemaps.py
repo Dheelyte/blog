@@ -17,14 +17,20 @@ class CategorySitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return Category.objects.all()
+        # Only categories that actually have published articles —
+        # never advertise empty pages to crawlers/AdSense.
+        return (
+            Category.objects
+            .filter(articles__published=True)
+            .distinct()
+        )
 
 class StaticViewSitemap(Sitemap):
     priority = 0.5
-    changefreq = 'daily'
+    changefreq = 'monthly'
 
     def items(self):
-        return ['home', 'search_articles']
+        return ['home', 'about', 'contact', 'privacy', 'terms', 'cookies']
 
     def location(self, item):
         return reverse(f'blog:{item}')

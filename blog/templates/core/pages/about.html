@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About - Harriben Hub{% endblock %}
+{% block og_description %}Learn about Harriben Hub and Dr. Harrison Onovo, the author behind articles on business, lifestyle, relationships, and more.{% endblock %}
+
+{% block content %}
+<div class="container article-container">
+    <div class="article-layout">
+        <div class="article-main">
+            <header class="article-header">
+                <nav class="breadcrumb">
+                    <a href="{% url 'blog:home' %}">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="current">About</span>
+                </nav>
+                <h1 class="article-title">About Harriben Hub</h1>
+            </header>
+
+            <main class="article-body-content">
+                <div class="article-body">
+                    <div class="content-wrapper ck-content">
+                        <p>Welcome to <strong>Harriben Hub</strong>, an independent publication dedicated to sharing
+                            practical insights on business, leadership, lifestyle, relationships, and personal
+                            development. Our goal is simple: to publish thoughtful, original articles that help readers
+                            think more clearly and live more intentionally.</p>
+
+                        <h2>Who Runs This Site</h2>
+                        <p>Harriben Hub is owned and edited by <strong>Dr. Harrison Onovo</strong> (pen name:
+                            <em>Harriben</em>). Harrison is a Nigerian writer and entrepreneur with a long-standing
+                            interest in leadership, business strategy, and the everyday questions that shape modern
+                            family and professional life. Every article on this site is reviewed and edited by him
+                            before being published.</p>
+
+                        <h2>What We Cover</h2>
+                        <p>Our editorial focus includes:</p>
+                        <ul>
+                            <li><strong>Business & Entrepreneurship</strong> — practical guidance for builders, small
+                                business owners, and professionals.</li>
+                            <li><strong>Leadership & Personal Development</strong> — frameworks and reflections drawn
+                                from real-life practice.</li>
+                            <li><strong>Relationships & Family Life</strong> — grounded perspectives on marriage,
+                                parenting, and community.</li>
+                            <li><strong>Lifestyle, Fashion & Wellness</strong> — accessible writing for everyday
+                                readers.</li>
+                        </ul>
+
+                        <h2>Editorial Standards</h2>
+                        <p>We commit to publishing original writing. Articles are drafted, reviewed, and edited
+                            in-house. We do not republish content from other sites. Where we cite books, research, or
+                            third-party sources, we credit them clearly. If you spot an error, please let us know via
+                            our <a href="{% url 'blog:contact' %}">contact page</a> and we will correct it promptly.
+                        </p>
+
+                        <h2>Get in Touch</h2>
+                        <p>You can reach us by email at <a
+                                href="mailto:contactharriben@gmail.com">contactharriben@gmail.com</a> or through our
+                            <a href="{% url 'blog:contact' %}">contact page</a>. For professional updates, connect with
+                            Harrison on <a href="https://www.linkedin.com/in/harriben" rel="noopener noreferrer"
+                                target="_blank">LinkedIn</a>.</p>
+
+                        <p>Thank you for reading — we are glad you are here.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

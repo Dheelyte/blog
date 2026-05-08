@@ -37,11 +37,17 @@
     <meta property="og:title"
         content="{% block og_title %}{% if article %}{{ article.title }}{% else %}Harriben Hub{% endif %}{% endblock %}">
     <meta property="og:description"
-        content="{% block og_description %}{% if article %}{{ article.excerpt|striptags }}{% else %}Harriben: Explore the latest news about engineering, business, technology, and more from Dr. Harrison Onovo{% endif %}{% endblock %}">
+        content="{% block og_description %}{% if article %}{{ article.content|striptags|truncatewords:30 }}{% else %}Harriben Hub publishes original articles on business, leadership, lifestyle, relationships, and more by Dr. Harrison Onovo.{% endif %}{% endblock %}">
     <meta property="og:image"
         content="{% block og_image %}{% if article %}{{ article.thumbnail_url }}{% else %}https://www.harribenhub.com{% static 'images/harriben hub Dr Harrison Onovo.png' %}{% endif %}{% endblock %}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="Harriben Hub">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if article %}{{ article.title }}{% else %}Harriben Hub{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if article %}{{ article.title }} — read on Harriben Hub.{% else %}Harriben Hub publishes original articles on business, leadership, lifestyle, and more by Dr. Harrison Onovo.{% endif %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% if article %}{{ article.title }} — read this article on Harriben Hub.{% else %}Harriben Hub publishes original articles on business, leadership, lifestyle, relationships, and more by Dr. Harrison Onovo.{% endif %}{% endblock %}">
+    <link rel="canonical" href="https://{{ request.get_host }}{{ request.path }}">
 </head>
 
 <body>
@@ -65,15 +71,20 @@
 
                     {% if categories|length > 5 %}
                     <div class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+                        <button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">More <i class="fas fa-chevron-down"></i></button>
                         <div class="dropdown-menu">
                             {% for category in categories|slice:"5:15" %}
                             <a href="{% url 'blog:articles_by_category' category.slug %}" class="dropdown-item">
                                 {{ category.name }}
                             </a>
                             {% endfor %}
+                            <a href="{% url 'blog:about' %}" class="dropdown-item">About</a>
+                            <a href="{% url 'blog:contact' %}" class="dropdown-item">Contact</a>
                         </div>
                     </div>
+                    {% else %}
+                    <a href="{% url 'blog:about' %}" class="nav-link">About</a>
+                    <a href="{% url 'blog:contact' %}" class="nav-link">Contact</a>
                     {% endif %}
 
                     <form action="{% url 'blog:search_articles' %}" method="get" class="search-form">
@@ -153,8 +164,9 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="{% url 'blog:home' %}">Home</a></li>
+                        <li><a href="{% url 'blog:about' %}">About</a></li>
+                        <li><a href="{% url 'blog:contact' %}">Contact</a></li>
                         <li><a href="mailto:contactharriben@gmail.com">Email</a></li>
-                        <li><a href="/admin/">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -163,9 +175,9 @@
                 <div class="footer-bottom-content">
                     <p>&copy; 2026 Harriben. All rights reserved.</p>
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
+                        <a href="{% url 'blog:privacy' %}">Privacy Policy</a>
+                        <a href="{% url 'blog:terms' %}">Terms of Service</a>
+                        <a href="{% url 'blog:cookies' %}">Cookie Policy</a>
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@
                 <!-- Breadcrumb -->
                 <nav class="breadcrumb">
                     <a href="{% url 'blog:home' %}">Home</a>
-                    <span class="breadcrumb-separator">/</span>
                     {% for category in article.categories.all|slice:":1" %}
+                    <span class="breadcrumb-separator">/</span>
                     <a href="{% url 'blog:articles_by_category' category.slug %}">{{ category.name }}</a>
                     {% endfor %}
                     <span class="breadcrumb-separator">/</span>
@@ -116,15 +116,15 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="author-bio-content">
-                            <h4>
-                                {% if article.author.get_full_name %}
-                                {{ article.author.get_full_name }}
-                                {% else %}
-                                Harriben
-                                {% endif %}
-                            </h4>
-                            <p>Author</p>
-                            <a href="https://www.linkedin.com/in/harriben">Connect on Linkedin</a>
+                            <h4>Dr. Harrison Onovo</h4>
+                            <p class="author-role">Founder &amp; Editor, Harriben Hub</p>
+                            <p class="author-description">
+                                Dr. Harrison Onovo (pen name <em>Harriben</em>) is a Nigerian writer and entrepreneur
+                                who publishes practical articles on business, leadership, lifestyle, and family life.
+                                Every article on Harriben Hub is written and edited under his direct oversight. Read
+                                more on the <a href="{% url 'blog:about' %}">About page</a>.
+                            </p>
+                            <a href="https://www.linkedin.com/in/harriben" rel="noopener noreferrer" target="_blank">Connect on LinkedIn</a>
                         </div>
                     </div>
                 </footer>

@@ -16,8 +16,15 @@ class ArticleAdminForm(forms.ModelForm):
         widgets = {
             "content": CKEditor5Widget(
                 attrs={"class": "django_ckeditor_5"}, config_name="extends"
-            )
+            ),
+            "seo_meta_description": forms.Textarea(attrs={"rows": 2}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name in ("seo_meta_title", "seo_meta_description", "seo_meta_keywords"):
+            if name in self.fields:
+                self.fields[name].required = True
 
 class ArticleAdmin(admin.ModelAdmin):
     form = ArticleAdminForm
@@ -40,6 +47,10 @@ class ArticleAdmin(admin.ModelAdmin):
         }),
         ('Publication', {
             'fields': ('published',)
+        }),
+        ('SEO', {
+            'description': 'These fields are required and control how the article appears in search engines and browser tabs.',
+            'fields': ('seo_meta_title', 'seo_meta_description', 'seo_meta_keywords'),
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),

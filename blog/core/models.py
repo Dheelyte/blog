@@ -71,7 +71,22 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
     published_at = models.DateTimeField(editable=False, null=True, blank=True)
-    
+    seo_meta_title = models.CharField(
+        max_length=70,
+        blank=True,
+        help_text="Title used in the browser tab and search results (recommended: 50-60 characters)."
+    )
+    seo_meta_description = models.CharField(
+        max_length=160,
+        blank=True,
+        help_text="Short summary shown in search results (recommended: 150-160 characters)."
+    )
+    seo_meta_keywords = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Comma-separated keywords relevant to this article."
+    )
+
     class Meta:
         ordering = ['-created_at']
         indexes = [

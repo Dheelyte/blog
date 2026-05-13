@@ -47,6 +47,7 @@
     <meta name="twitter:title" content="{% block twitter_title %}{% if article %}{{ article.title }}{% else %}Harriben Hub{% endif %}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{% if article %}{{ article.title }} — read on Harriben Hub.{% else %}Harriben Hub publishes original articles on business, leadership, lifestyle, and more by Dr. Harrison Onovo.{% endif %}{% endblock %}">
     <meta name="description" content="{% block meta_description %}{% if article %}{{ article.title }} — read this article on Harriben Hub.{% else %}Harriben Hub publishes original articles on business, leadership, lifestyle, relationships, and more by Dr. Harrison Onovo.{% endif %}{% endblock %}">
+    {% block meta_keywords %}{% endblock %}
     <link rel="canonical" href="https://{{ request.get_host }}{{ request.path }}">
 </head>
 
